@@ -1,11 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/main.css">
     <title>Calculadora</title>
 </head>
+
 <body>
-    <h1>Calculadora</h1>
+    <div class="container">
+        <div class="row text-center mt-4">
+            <div class="col">
+                <h1>Calculadora Básica</h1>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div class="row justify-content-center">
+                    <div class="col-12 mb-2">
+                        <input type="text" id="display" class="form-control" disabled>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col-3">
+                            <button type="button" class="btn btn-secondary" id="btn-7" onclick="presionarBoton(7)">7</button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn btn-secondary" id="btn-8" onclick="presionarBoton(8)">8</button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn btn-secondary" id="btn-9" onclick="presionarBoton(9)">9</button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn btn-secondary" id="btn-dividir" onclick="presionarBoton('/')">/</button>
+                        </div>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col-3">
+                            <button type="button" class="btn btn-secondary" id="btn-4" onclick="presionarBoton(4)">4</button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn btn-secondary" id="btn-5" onclick="presionarBoton(5)">5</button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn btn-secondary" id="btn-6" onclick="presionarBoton(6)">6</button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn btn-secondary" id="btn-multiplicar" onclick="presionarBoton('*')">*</button>
+                        </div>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col-3">
+                            <button type="button" class="btn btn-secondary" id="btn-1" onclick="presionarBoton(1)">1</button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn btn-secondary" id="btn-2" onclick="presionarBoton(2)">2</button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn btn-secondary" id="btn-3" onclick="presionarBoton(3)">3</button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn btn-secondary" id="btn-restar" onclick="presionarBoton('-')">-</button>
+                        </div>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col-3">
+                            <button type="button" class="btn btn-secondary" id="btn-0" onclick="presionarBoton(0)">0</button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn btn-secondary" id="btn-clear" onclick="presionarBoton('C')">C</button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn btn-secondary" id="btn-igual" onclick="realizarOperacion()">=</button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn btn-secondary" id="btn-sumar" onclick="presionarBoton('+')">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <h3 class="h3-responsive text-center">Historial</h3>
+                <button id="borrar-historial" class="btn btn-danger">Borrar historial</button>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Operación</th>
+                            <th>Resultado</th>
+                        </tr>
+                    </thead>
+                    <tbody id="historial-table">
+                        <!-- Los registros del historial se agregarán aquí -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="assets/js/main.js"></script>
 </body>
+
 </html>
