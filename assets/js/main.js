@@ -50,28 +50,39 @@ function realizarOperacion() {
                 resultado = parseFloat(numero1) * parseFloat(numero2);
                 break;
             case '/':
+                if (parseFloat(numero2) === 0) {
+                    alert("Error: No se puede dividir por 0");
+                    return;
+                }
                 resultado = parseFloat(numero1) / parseFloat(numero2);
                 break;
         }
 
         // Guardar operación y resultado en localStorage
-let operaciones = JSON.parse(localStorage.getItem("operaciones")) || [];
-let operacion = numero1 + " " + operador + " " + numero2;
-operaciones.push({
-    operacion: operacion,
-    resultado: resultado
-});
-localStorage.setItem("operaciones", JSON.stringify(operaciones));
+        let operaciones = JSON.parse(localStorage.getItem("operaciones")) || [];
+        let operacion = numero1 + " " + operador + " " + numero2;
+        operaciones.push({
+            operacion: operacion,
+            resultado: resultado
+        });
+        localStorage.setItem("operaciones", JSON.stringify(operaciones));
 
         // Actualizar numero1 con el resultado
         numero1 = resultado.toString();
         operador = "";
         displayValue = numero1;
-
        
-
         // Mostrar registros actualizados
         mostrarRegistros();
+
+        const notificacion = document.createElement("div");
+        notificacion.innerHTML = "Operación creada";
+        notificacion.className = "notificacion notificacion-success";
+        document.body.appendChild(notificacion);
+        setTimeout(() => {
+            notificacion.remove();
+        }, 3000); // 3000 milisegundos = 3 segundos
+
 
         console.log(resultado);
         document.getElementById("display").value = displayValue;
@@ -87,9 +98,44 @@ function mostrarRegistros() {
         let fila = tabla.insertRow();
         let celdaOperacion = fila.insertCell();
         let celdaResultado = fila.insertCell();
+        let celdaCopiar = fila.insertCell();
+        let celdaEliminar = fila.insertCell();
         celdaOperacion.textContent = operacion.operacion;
-        celdaResultado.textContent = operacion.resultado;
+
+        let resultadoString = operacion.resultado.toString();
+        let decimales = 0;
+        if (resultadoString.includes('.')) {
+            decimales = Math.max(0, 10 - resultadoString.split('.')[1].length);
+        }
+        celdaResultado.textContent = operacion.resultado.toFixed(decimales);
+        celdaCopiar.innerHTML = '<button class="btn btn-secondary" onclick="copiarOperacion(\'' + operacion.operacion + '\')">Copiar</button>';
+        celdaEliminar.innerHTML = '<button class="btn btn-danger" onclick="eliminarOperacion(' + i + ')">Eliminar</button>';
     }
+}
+
+function copiarOperacion(operacion) {
+    navigator.clipboard.writeText(operacion);
+    const notificacion = document.createElement("div");
+    notificacion.innerHTML = "Operación copiada";
+    notificacion.className = "notificacion";
+    document.body.appendChild(notificacion);
+    setTimeout(() => {
+        notificacion.remove();
+    }, 3000); // 3000 milisegundos = 3 segundos
+}
+
+function eliminarOperacion(index) {
+    let operaciones = JSON.parse(localStorage.getItem("operaciones")) || [];
+    operaciones.splice(index, 1);
+    localStorage.setItem("operaciones", JSON.stringify(operaciones));
+    mostrarRegistros();
+    const notificacion = document.createElement("div");
+    notificacion.innerHTML = "Operación eliminada";
+    notificacion.className = "notificacion notificacion-error";
+    document.body.appendChild(notificacion);
+    setTimeout(() => {
+        notificacion.remove();
+    }, 3000); // 3000 milisegundos = 3 segundos
 }
 
 document.getElementById("borrar-historial").addEventListener("click", function() {

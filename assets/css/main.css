@@ -1,3 +1,45 @@
+body{
+    background-image: url(https://besthqwallpapers.com/Uploads/4-5-2020/131773/thumb2-financial-charts-financial-report-bookkeeping-concepts-calculator-bookkeeping.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
 button{
     width:100%;
+}
+
+.cajaCalculadora{
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px;
+    backdrop-filter: blur(10px);
+
+}
+
+.notificacion {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.notificacion-error {
+    background-color: #f44336;
+    color: #fff;
+    border-color: #f44336;
+}
+
+.notificacion-success {
+    background-color: #4CAF50;
+    color: #fff;
+    border-color: #4CAF50;
 }
